@@ -33,8 +33,8 @@ class xlps():
                 self.severe_problems.append('供应商、分包商名称不能超过35个字符')
             if sheet.row_values(x)[4] == '':
                 self.severe_problems.append('供应商、分包商类别不能为空')
-            elif len(set(str(sheet.row_values(x)[4]).split(' ')[0].split('；')) | set(
-                    ['E设备供应商', 'M材料供应商', 'S服务供应商', 'D设计分包商', 'C施工分包商', 'O运营分包商', 'L劳务分包商', 'OT其他'])) != 8:
+            elif len(set(str(sheet.row_values(x)[4]).split(' ')[0].split('；')) | {
+                        'E设备供应商', 'M材料供应商', 'S服务供应商', 'D设计分包商', 'C施工分包商', 'O运营分包商', 'L劳务分包商', 'OT其他'}) != 8:
                 self.severe_problems.append('供应商、分包商类别填写有误，请按照要求填写/检查符号；/删除多余空格')
             if sheet.row_values(x)[5] == '':
                 self.severe_problems.append('国家不能为空')
