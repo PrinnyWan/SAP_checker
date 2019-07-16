@@ -5,8 +5,10 @@ import xls_process
 class SAPChecker:
     def __init__(self):
         print('\n'
-              'Test. Write the document here'
-              '\n')
+              'SAP 主数据申请表检查工具\n'
+              '填写模板时请勿删除原模板内容\n'
+              'https://github.com/PrinnyWan/SAP_checker\n'
+              )
         os.system("pause")
         self.root = './'
         self.file_names = os.listdir(self.root)
@@ -18,11 +20,11 @@ class SAPChecker:
                 file_counter += 1
             if '.xls' in x:
                 excel_counter += 1
-                processer = xls_process.xlps(self.root + x)
+                processer = xls_process.Xlps(self.root + x)
                 if processer.check():
-                    print(x + ' 通过审核')
+                    print(x + ' 通过检查')
                 else:
-                    print(x + ' 请修改后重新审核\n')
+                    print(x + ' 请修改后重新检查\n')
         os.system("pause")
         return
 

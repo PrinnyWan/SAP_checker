@@ -1,9 +1,8 @@
 import re
-
 import xlrd
 
 
-class xlps():
+class Xlps():
     def __init__(self, path):
         self.workbook = xlrd.open_workbook(path)
         self.severe_problems = []
@@ -38,10 +37,11 @@ class xlps():
                 self.severe_problems.append('供应商、分包商类别填写有误，请按照要求填写/检查符号；/删除多余空格')
             if sheet.row_values(x)[5] == '':
                 self.severe_problems.append('国家不能为空')
-            elif len(str(sheet.row_values(x)[5]).split(' ')) != 2:
+            elif len(str(sheet.row_values(x)[5]).split(' ')[0]) != 2 or re.compile("[\u4e00-\u9fa5]+").search(
+                    str(sheet.row_values(x)[5]).split(' ')[0]):
                 self.severe_problems.append('国家格式错误，请按照要求填写/从下拉框选取')
             if sheet.row_values(x)[6] == '':
-                self.small_problems.append('国外地址，不填写 省/直辖市,请确认')
+                self.small_problems.append('国外地址不填写 省/直辖市,请确认为国外地址')
             elif len(str(sheet.row_values(x)[6]).split(' ')) != 2:
                 self.severe_problems.append('省/直辖市格式错误，请按照要求 国外地址不填写/从下拉框选取')
             if sheet.row_values(x)[7] == '':
@@ -147,11 +147,9 @@ class xlps():
         if self.severe_problems:
             self.status = False
         for i in range(2):
-            string = strings[i]
-
-            print(string)
+            print(strings[i])
             if not problems_list[i]:
                 print('无')
-            for x in problems_list[i]:
+            while problems_list[i]:
                 print(problems_list[i].pop(0))
         return

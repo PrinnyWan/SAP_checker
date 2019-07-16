@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['checker.py'],
-             pathex=['D:\\PyProject\\SAP_check'],
+             pathex=['D:\\PyProject\\SAP_checker'],
              binaries=[],
              datas=[],
              hiddenimports=[],
