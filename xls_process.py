@@ -148,8 +148,10 @@ class Xlps():
             self.status = False
         for i in range(2):
             print(strings[i])
+            n = 1
             if not problems_list[i]:
                 print('无')
             while problems_list[i]:
-                print(problems_list[i].pop(0))
+                print(n, problems_list[i].pop(0))
+                n += 1
         return
